@@ -22,4 +22,11 @@ describe 'Battle', type: :feature do
     click_button('Attack')
     expect(page).to have_content "Bob attacked Tom"
   end
+
+  it 'reduces player 2s hp by 10 points' do
+    sign_in_and_play
+    click_button('Attack')
+    expect(page).to have_content "Tom's Hit points: 90"
+  end
+
 end
