@@ -1,6 +1,7 @@
 require "sinatra/base"
 require "sinatra/reloader"
 require_relative 'models/player'
+require_relative 'models/game'
 
 class Battle < Sinatra::Base
 
@@ -27,8 +28,9 @@ class Battle < Sinatra::Base
   get '/attack' do
     @player_1 = $player_1.name
     @player_2 = $player_2.name
-    @player_2_hit_points = $player_2.receive_dmg
-    @player_2_hit_points
+    game = Game.new
+    game.attack($player_2)
+    @player_2_hit_points = $player_2.hp
     erb :attack
   end
 
